@@ -1,2 +1,2 @@
 # stylesage-chart
-Helm chart for Stylesage
+Helm chart made by ricardoplaza
