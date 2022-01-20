@@ -44,9 +44,9 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   hosts:
     - host: chart-example.local
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
+      keys:
+        - key: /
+          keyType: ImplementationSpecific
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -85,3 +85,26 @@ nodeSelector:
 tolerations: []
 
 affinity: {}
+
+env:
+  - name: S3_BUCKET_NAME
+    value: "ricardoplaza"
+
+## Secrets values
+
+secrets:
+  enabled: true
+  name: ricardoplaza-secrets
+  serviceAccount: ricardoplaza-secrets-sa
+  roleArn: arn:aws:iam::000000000:role/secrets-eks-role
+  data:
+    - key: postgresql/RDS_DB_NAME
+      name: RDS_DB_NAME
+    - key: postgresql/RDS_USERNAME
+      name: RDS_USERNAME
+    - key: postgresql/RDS_PASSWORD
+      name: RDS_PASSWORD
+    - key: postgresql/RDS_HOSTNAME
+      name: RDS_HOSTNAME
+    - key: postgresql/RDS_PORT
+      name: RDS_PORT
